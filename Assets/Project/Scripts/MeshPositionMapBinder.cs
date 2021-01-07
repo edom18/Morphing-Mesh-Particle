@@ -10,6 +10,8 @@ public class MeshPositionMapBinder : MonoBehaviour
 {
     [SerializeField] private BakeMeshToTexture[] _bakers = null;
 
+    private BakeMeshToTexture CurrentBaker => _bakers[_index];
+
     private VisualEffect _vfx = null;
     private int _index = -1;
 
@@ -25,12 +27,18 @@ public class MeshPositionMapBinder : MonoBehaviour
         Change();
     }
 
+    private void Update()
+    {
+        CurrentBaker.UploadMeshTexture();
+    }
+
     private void Change()
     {
         _index = (_index + 1) % _bakers.Length;
-        _vfx.SetTexture($"PositionMap", _bakers[_index].BakedTexture);
-        _vfx.SetInt($"Size", _bakers[_index].BakedTexture.width);
-        _vfx.SetMatrix4x4($"VolumeTransform", _bakers[_index].Transform.localToWorldMatrix);
+
+        _vfx.SetTexture($"PositionMap", CurrentBaker.BakedTexture);
+        _vfx.SetInt($"Size", CurrentBaker.BakedTexture.width);
+        _vfx.SetMatrix4x4($"VolumeTransform", CurrentBaker.Transform.localToWorldMatrix);
     }
 
     private void OnGUI()
