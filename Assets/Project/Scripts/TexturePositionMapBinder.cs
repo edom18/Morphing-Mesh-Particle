@@ -22,4 +22,12 @@ public class TexturePositionMapBinder : MonoBehaviour
         _vfx.SetInt("Width", _baker.Width);
         _vfx.SetInt("Height", _baker.Height);
     }
+
+    private void OnGUI()
+    {
+        if (GUI.Button(new Rect(10, 10, 130, 30), "Burst"))
+        {
+            _vfx.SetFloat("Progress", 1f);
+        }
+    }
 }

@@ -35,12 +35,14 @@ public class BakePixelToTexture : MonoBehaviour
     private void UpdatePositionMap()
     {
         Color[] buffer = new Color[Width * Height];
+
+        float ratio = Height / (float)Width;
         
         for (int y = 0; y < Height; y++)
         {
             for (int x = 0; x < Width; x++)
             {
-                Vector3 v = new Vector3(x * _scale, y * _scale, 0);
+                Vector3 v = new Vector3(x * _scale, y * _scale * ratio, 0);
                 buffer[y * Width + x] = VectorToColor(v);
             }
         }
