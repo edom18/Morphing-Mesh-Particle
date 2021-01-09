@@ -36,13 +36,16 @@ public class BakePixelToTexture : MonoBehaviour
     {
         Color[] buffer = new Color[Width * Height];
 
-        float ratio = Height / (float)Width;
+        float halfWidth = Width * _scale * 0.5f;
+        float halfHeight = Height * _scale * 0.5f;
         
         for (int y = 0; y < Height; y++)
         {
             for (int x = 0; x < Width; x++)
             {
-                Vector3 v = new Vector3(x * _scale, y * _scale * ratio, 0);
+                float px = (x * _scale) - halfWidth;
+                float py = (y * _scale) - halfHeight;
+                Vector3 v = new Vector3(px, py, 0);
                 buffer[y * Width + x] = VectorToColor(v);
             }
         }
