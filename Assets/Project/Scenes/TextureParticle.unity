@@ -482,7 +482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _baker: {fileID: 1571010543}
-  _duration: 1
+  _duration: 4
 --- !u!114 &1571010543
 MonoBehaviour:
   m_ObjectHideFlags: 0
